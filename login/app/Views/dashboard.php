@@ -41,7 +41,7 @@
         <?php foreach($users as $user): ?>
 
             <!-- HIDE ADMIN ACCOUNT -->
-            <?php if ($user['email'] === 'admin@gmail.com') continue; ?>
+            <?php if ($user['email'] === 'admin@gmail.com') continue; ?> <!--Guna continue keyword to skip this from displaying-->
 
             <tr>
                 <td><?= $user['id'] ?></td>
@@ -161,19 +161,25 @@
   </div>
 </div>
 
+<!--jquery-->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 <!-- BOOTSTRAP JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- EDIT SCRIPT -->
 <script>
 function openEdit(user) {
-    document.getElementById('edit-id').value = user.id;
-    document.getElementById('edit-username').value = user.username;
-    document.getElementById('edit-email').value = user.email;
 
-    document.getElementById('editForm').action = "/users/update/" + user.id;
+    $('#edit-id').val(user.id);
+    $('#edit-username').val(user.username);
+    $('#edit-email').val(user.email);
+
+    $('#editForm').attr('action', '/users/update/' + user.id);
 }
 </script>
 
 </body>
 </html>
+
+<!--Use jquery for more shortcuts, it's easier to code-->
