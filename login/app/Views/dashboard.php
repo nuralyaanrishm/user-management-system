@@ -40,6 +40,9 @@
 
         <?php foreach($users as $user): ?>
 
+            <!-- HIDE ADMIN ACCOUNT -->
+            <?php if ($user['email'] === 'admin@gmail.com') continue; ?>
+
             <tr>
                 <td><?= $user['id'] ?></td>
                 <td><?= $user['username'] ?></td>
@@ -50,8 +53,7 @@
                     <?php if ($user['id'] != session('user.id')): ?>
 
                         <!-- EDIT -->
-                        <a href="#" 
-                           class="btn btn-warning btn-sm"
+                        <a href="#" class="btn btn-warning btn-sm"
                            data-bs-toggle="modal"
                            data-bs-target="#editUserModal"
                            onclick="openEdit(<?= htmlspecialchars(json_encode($user)) ?>)">
@@ -59,7 +61,7 @@
                         </a>
 
                         <!-- DELETE -->
-                        <a href="/users/delete/<?= $user['id'] ?>" 
+                        <a href="/users/delete/<?= $user['id'] ?>"
                            class="btn btn-danger btn-sm"
                            onclick="return confirm('Delete this user?')">
                             Delete
@@ -162,7 +164,7 @@
 <!-- BOOTSTRAP JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- EDIT JS -->
+<!-- EDIT SCRIPT -->
 <script>
 function openEdit(user) {
     document.getElementById('edit-id').value = user.id;
